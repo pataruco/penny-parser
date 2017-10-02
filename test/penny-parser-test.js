@@ -13,4 +13,39 @@ describe('PennyParser', ( ) => {
             done();
         });
     });
+
+    describe('Output', ( ) => {
+
+        describe('When you write a number string should return a number' , ( ) => {
+            it('should return a number', () => {
+                let pennyParse = new PennyParser('432');
+                assert.isNumber( new PennyParser('432').number );
+                // done();
+            });
+        })
+
+        describe('When you write a number string plus lowercase p' , ( ) => {
+            it('should return a number', () => {
+                let pennyParse = new PennyParser('432p');
+                assert.isNumber( pennyParse.number );
+            });
+        })
+
+        describe('When you write lowercase p plus number string' , ( ) => {
+            it('should return a number', () => {
+                let pennyParseOne = new PennyParser('p432');
+                assert.isNumber( pennyParseOne.number );
+                assert.isNotNaN( pennyParseOne.number );
+            });
+        })
+
+        describe('When you write Sterling sign plus number string' , ( ) => {
+            it('should return a number', () => {
+                let pennyParseOne = new PennyParser('£432');
+                assert.isNumber( pennyParseOne.number );
+                assert.isNotNaN( pennyParseOne.number );
+            });
+        })
+
+    });
 });
