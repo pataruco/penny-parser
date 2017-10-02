@@ -48,10 +48,11 @@ describe('PennyParser', ( ) => {
         })
 
         describe('When you write number string with a dot' , ( ) => {
-            it('should return a number', () => {
+            it('should return a number times 100', () => {
                 let pennyParseOne = new PennyParser('16.23');
                 assert.isNumber( pennyParseOne.number );
                 assert.isNotNaN( pennyParseOne.number );
+                assert.equal( new PennyParser('16.23').number, 1623);
             });
         })
 
