@@ -47,5 +47,13 @@ describe('PennyParser', ( ) => {
             });
         })
 
+        describe('When you write number string with a dot' , ( ) => {
+            it('should return a number', () => {
+                let pennyParseOne = new PennyParser('16.23');
+                assert.isNumber( pennyParseOne.number );
+                assert.isNotNaN( pennyParseOne.number );
+            });
+        })
+
     });
 });

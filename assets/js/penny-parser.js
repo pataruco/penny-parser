@@ -5,12 +5,12 @@ class PennyParser {
 
     get number( ) {
         const clearString = this.clearString( );
-        return parseInt( clearString );
+        return parseFloat( clearString );
     }
 
     clearString( ) {
         const string = this.data;
-        return string.replace(/p/g, '');
+        return string.replace(/p/g, '').replace(/£/,'');
     }
 }
 
