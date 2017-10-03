@@ -25,7 +25,7 @@ describe('PennyParser', ( ) => {
 
         // '213p' => 213
         describe('When you write a number string + lowercase p' , ( ) => {
-            it('should return a number string as number', () => {
+            it('should return a number', () => {
                 let pennyParse = new PennyParser('213p');
                 assert.equal( pennyParse.number, 213 );
             });
@@ -43,7 +43,7 @@ describe('PennyParser', ( ) => {
 
         //'£14' => 1400
         describe('When you write Sterling sign + number string' , ( ) => {
-            it('should return a number number times 100', () => {
+            it('should return a number times 100', () => {
                 let pennyParseOne = new PennyParser('£14');
                 assert.isNumber( pennyParseOne.number );
                 assert.isNotNaN( pennyParseOne.number );
@@ -53,7 +53,7 @@ describe('PennyParser', ( ) => {
 
         //'£54.04' => 5404
         describe('When you write Sterling sign + number string with a dot' , ( ) => {
-            it('should return a number number times 100', () => {
+            it('should return a number number 100', () => {
                 let pennyParseOne = new PennyParser('£54.04');
                 assert.isNumber( pennyParseOne.number );
                 assert.isNotNaN( pennyParseOne.number );
@@ -83,6 +83,12 @@ describe('PennyParser', ( ) => {
         })
 
         //'13x' => 'invalid character'
+        describe('When you write number string + X' , ( ) => {
+            it('should return "invalid character"', () => {
+                let pennyParse = new PennyParser('13x');
+                assert.equal( pennyParse.number.message,  new Error('invalid character').message );
+            });
+        })
 
         //'13.02p' => valid character in the wrong position
 
