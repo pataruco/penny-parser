@@ -1,27 +1,31 @@
 class PennyParser {
     constructor( string ) {
-        this.data = string;
+        this.string = string;
+        this.isPIntheLastPosition =  string.lastIndexOf('p') === ( string.length -1 );
     }
 
     get number( ) {
-        const string = this.data;
-        if ( string.includes('p') ) {
-            return this.convertToNumber( string );
-        } else if ( string.includes('.') ) {
-            return this.convertToNumber( string );
+        if ( this.isPIntheLastPosition ) {
+            return this.pConvertToNumber( );
+       } else if ( this.string.includes('.') ) {
+            return this.convertToNumber(  );
         } else {
-            return parseFloat( this.clearString ( string ) );
-
+            return parseFloat( this.clearString (  ) );
         }
     }
 
-    clearString( string ) {
-        return string.replace(/p/g, '').replace(/£/,'');
+    pConvertToNumber( ) {
+         const stringNumber = this.string.replace(/p/g, '');
+         return parseFloat( stringNumber );
+    }
+
+    clearString(  ) {
+        return this.string.replace(/p/g, '').replace(/£/,'');
 
     }
 
-    convertToNumber( string ) {
-        const stringNumber = string.replace(/p/g, '').replace(/£/,'');
+    convertToNumber(  ) {
+        const stringNumber = this.string.replace(/p/g, '').replace(/£/,'');
         return parseFloat( stringNumber ) * 100;
     }
 }
