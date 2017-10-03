@@ -24,7 +24,7 @@ describe('PennyParser', ( ) => {
         })
 
         // '213p' => 213
-        describe('When you write a number string plus lowercase p' , ( ) => {
+        describe('When you write a number string + lowercase p' , ( ) => {
             it('should return a number string as number', () => {
                 let pennyParse = new PennyParser('213p');
                 assert.equal( pennyParse.number, 213 );
@@ -32,36 +32,55 @@ describe('PennyParser', ( ) => {
         })
 
         //'£16.23p' => 1623
-        describe('When you write lowercase p plus number string' , ( ) => {
+        describe('When you write Sterling + number string + lowercase p ' , ( ) => {
             it('should return a number', () => {
-                let pennyParseOne = new PennyParser('p432');
+                let pennyParseOne = new PennyParser('£16.23p');
                 assert.isNumber( pennyParseOne.number );
                 assert.isNotNaN( pennyParseOne.number );
+                assert.equal( pennyParseOne.number, 1623 );
             });
         })
 
         //'£14' => 1400
-        describe('When you write Sterling sign plus number string' , ( ) => {
-            it('should return a number', () => {
-                let pennyParseOne = new PennyParser('£432');
+        describe('When you write Sterling sign + number string' , ( ) => {
+            it('should return a number number times 100', () => {
+                let pennyParseOne = new PennyParser('£14');
                 assert.isNumber( pennyParseOne.number );
                 assert.isNotNaN( pennyParseOne.number );
+                assert.equal( pennyParseOne.number, 1400 );
             });
         })
 
         //'£54.04' => 5404
-
-        //'£23.333333' => 2333
-        describe('When you write number string with a dot' , ( ) => {
-            it('should return a number times 100', () => {
-                let pennyParseOne = new PennyParser('16.23');
+        describe('When you write Sterling sign + number string with a dot' , ( ) => {
+            it('should return a number number times 100', () => {
+                let pennyParseOne = new PennyParser('£54.04');
                 assert.isNumber( pennyParseOne.number );
                 assert.isNotNaN( pennyParseOne.number );
-                assert.equal( new PennyParser('16.23').number, 1623);
+                assert.equal( pennyParseOne.number, 5404 );
+            });
+        })
+
+
+        //'£23.333333' => 2333
+        describe('When you write Sterling sign + number string with a dot and more than 2 decimals' , ( ) => {
+            it('should return a number times 100', () => {
+                let pennyParseOne = new PennyParser('£23.333333');
+                assert.isNumber( pennyParseOne.number );
+                assert.isNotNaN( pennyParseOne.number );
+                assert.equal( pennyParseOne.number, 2333);
             });
         })
 
         //'001.41p' => 141
+        describe('When you write number string with a dot and more tha 2 zeroes on the left' , ( ) => {
+            it('should return a number times 100', () => {
+                let pennyParseOne = new PennyParser('001.41p');
+                assert.isNumber( pennyParseOne.number );
+                assert.isNotNaN( pennyParseOne.number );
+                assert.equal( pennyParseOne.number, 141);
+            });
+        })
 
         //'13x' => 'invalid character'
 
