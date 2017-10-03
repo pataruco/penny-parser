@@ -4,27 +4,33 @@ class PennyParser {
           this.isPInTheLastPosition =  string.lastIndexOf('p') === ( string.length -1 );
           this.isSterlingInTheFirstPosition = string.indexOf('£') === 0;
           this.isDotPresent = string.includes('.');
+          const areValidCharactersPattern = new RegExp( '^[0-9\.\p\£\]*$' )
+          this.areValidCharacters = areValidCharactersPattern.test( string );
      }
 
      get number( ) {
-          if ( this.isSterlingInTheFirstPosition &&  this.isPInTheLastPosition) {
+          if ( this.isSterlingInTheFirstPosition &&  this.isPInTheLastPosition && this.areValidCharacters ) {
                return this.sterlingConvertToNumber( );
           }
 
-          if ( this.isSterlingInTheFirstPosition ) {
+          if ( this.isSterlingInTheFirstPosition && this.areValidCharacters ) {
                return this.sterlingConvertToNumber( );
           }
 
-          if ( this.isPInTheLastPosition && this.isDotPresent ) {
+          if ( this.isPInTheLastPosition && this.isDotPresent && this.areValidCharacters ) {
                return this.pDotConvertToNumber( );
           }
 
-          if ( this.isPInTheLastPosition ) {
+          if ( this.isPInTheLastPosition && this.areValidCharacters ) {
                return this.pConvertToNumber( );
           }
 
+          if ( !this.areValidCharacters ) {
+              return this.invalidCharacterError( )
+          }
 
-          return parseFloat( this.clearString (  ) );
+
+          return this.clearString (  );
      }
 
      sterlingConvertToNumber( ) {
@@ -42,14 +48,12 @@ class PennyParser {
           return parseFloat( stringNumber ) * 100;
      }
 
-     clearString(  ) {
-          return this.string.replace(/p/g, '').replace(/£/,'');
-
+     invalidCharacterError( ) {
+         return new Error('invalid character');
      }
 
-     convertToNumber(  ) {
-          const stringNumber = this.string.replace(/p/g, '').replace(/£/,'');
-          return parseFloat( stringNumber ) * 100;
+     clearString(  ) {
+          return parseFloat ( this.string.replace(/p/g, '').replace(/£/,'') );
      }
 }
 
