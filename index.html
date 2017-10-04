@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="public/app.css">
+        <title>Sterling coins calculator</title>
+    </head>
+    <body>
+        <h1>Sterling coins calculator</h1>
+        <section id="js-app">
+            <form action="index.html" method="post" v-on:submit.prevent="onSubmit">
+                <label for="calculator">
+                    Calculator
+                </label>
+                <input type="text" name="calculator" value="" id="calculator" v-model="calculateString">
+                <button type="submit">Convert</button>
+            </form>
+        </section>
+        <script src="public/app.js" charset="utf-8"></script>
+    </body>
+</html>
