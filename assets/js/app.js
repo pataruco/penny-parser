@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
                 try {
                     penniesAmount = new PennyParser( this.calculateString ).number;
-
+                    console.log( penniesAmount );
                 } catch (e) {
                     console.error(error.message);
                 } finally {
