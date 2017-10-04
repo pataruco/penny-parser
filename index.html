@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="public/app.css">
+    <title>Sterling coins calculator</title>
+</head>
+<body>
+    <h1>Sterling coins calculator</h1>
+    <section id="js-app">
+        <form action="index.html" method="post" v-on:submit.prevent="onSubmit">
+            <label for="calculator">
+                Calculator
+            </label>
+            <input type="text" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^[0-9\.\p\£\]*$">
+            <button type="submit">Convert</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>Coin</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(value, key) in sterling" v-if="value">
+                    <td>
+                        {{ key >= 100 ? '£' + key / 100 : key + 'p'  }}
+                    </td>
+                    <td>{{ value }}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr v-if="total">
+                    <td>Total</td>
+                    <td>£{{ total }}p</td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <script src="public/app.js" charset="utf-8"></script>
+</body>
+</html>

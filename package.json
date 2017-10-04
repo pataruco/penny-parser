@@ -7,7 +7,11 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "watch": "NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "hot": "NODE_ENV=development webpack-dev-server --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,6 +25,10 @@
   "homepage": "https://github.com/pataruco/penny-parser#readme",
   "devDependencies": {
     "chai": "^4.1.2",
+    "laravel-mix": "^1.4.5",
     "mocha": "^3.5.3"
+  },
+  "dependencies": {
+    "vue": "^2.4.4"
   }
 }
