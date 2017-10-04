@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () =>  {
         el: '#js-app',
         data: {
             calculateString: '',
-            sterling: { }
+            sterling: { },
+            total: null
         },
         methods: {
             onSubmit(  ) {
@@ -16,13 +17,11 @@ document.addEventListener("DOMContentLoaded", () =>  {
 
                 try {
                     penniesAmount = new PennyParser( this.calculateString ).number;
-                    console.log( penniesAmount );
                 } catch (e) {
                     console.error(error.message);
-                } finally {
-                    this.sterling = new SterlingCalculator( penniesAmount ).calculate;
-                    console.log( this.sterling );
                 }
+                this.sterling = new SterlingCalculator( penniesAmount ).calculate;
+                this.total  = parseFloat( penniesAmount / 100 );
             }
         }
     });// end of Vue
