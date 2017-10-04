@@ -14,7 +14,7 @@ describe('PennyParser', ( ) => {
     describe('Output', ( ) => {
 
          // '432' => 432
-        describe('When you write a number string' , ( ) => {
+        describe('When you give a number string' , ( ) => {
             it('should return a string number as number', () => {
                 let pennyParse = new PennyParser('432');
                 assert.isNumber( new PennyParser('432').number );
@@ -22,7 +22,7 @@ describe('PennyParser', ( ) => {
         })
 
         // '213p' => 213
-        describe('When you write a number string + lowercase p' , ( ) => {
+        describe('When you give a number string + lowercase p' , ( ) => {
             it('should return a number', () => {
                 let pennyParse = new PennyParser('213p');
                 assert.equal( pennyParse.number, 213 );
@@ -30,7 +30,7 @@ describe('PennyParser', ( ) => {
         })
 
         //'£16.23p' => 1623
-        describe('When you write Sterling + number string + lowercase p ' , ( ) => {
+        describe('When you give Sterling + number string + lowercase p ' , ( ) => {
             it('should return a number', () => {
                 let pennyParseOne = new PennyParser('£16.23p');
                 assert.isNumber( pennyParseOne.number );
@@ -40,7 +40,7 @@ describe('PennyParser', ( ) => {
         })
 
         //'£14' => 1400
-        describe('When you write Sterling sign + number string' , ( ) => {
+        describe('When you give Sterling sign + number string' , ( ) => {
             it('should return a number times 100', () => {
                 let pennyParseOne = new PennyParser('£14');
                 assert.isNumber( pennyParseOne.number );
@@ -50,7 +50,7 @@ describe('PennyParser', ( ) => {
         })
 
         //'£54.04' => 5404
-        describe('When you write Sterling sign + number string with a dot' , ( ) => {
+        describe('When you give Sterling sign + number string with a dot' , ( ) => {
             it('should return a number number 100', () => {
                 let pennyParseOne = new PennyParser('£54.04');
                 assert.isNumber( pennyParseOne.number );
@@ -61,7 +61,7 @@ describe('PennyParser', ( ) => {
 
 
         //'£23.333333' => 2333
-        describe('When you write Sterling sign + number string with a dot and more than 2 decimals' , ( ) => {
+        describe('When you give Sterling sign + number string with a dot and more than 2 decimals' , ( ) => {
             it('should return a number times 100', () => {
                 let pennyParseOne = new PennyParser('£23.333333');
                 assert.isNumber( pennyParseOne.number );
@@ -71,7 +71,7 @@ describe('PennyParser', ( ) => {
         })
 
         //'001.41p' => 141
-        describe('When you write number string with a dot and more tha 2 zeroes on the left' , ( ) => {
+        describe('When you give number string with a dot and more tha 2 zeroes on the left' , ( ) => {
             it('should return a number times 100', () => {
                 let pennyParseOne = new PennyParser('001.41p');
                 assert.isNumber( pennyParseOne.number );
@@ -81,7 +81,7 @@ describe('PennyParser', ( ) => {
         })
 
         //'13x' => 'invalid character'
-        describe('When you write number string + X' , ( ) => {
+        describe('When you give number string + X' , ( ) => {
             it('should return error "invalid character"', () => {
                 let pennyParse = new PennyParser('13x');
                 assert.equal( pennyParse.number.message,  new Error('invalid character').message );
@@ -89,7 +89,7 @@ describe('PennyParser', ( ) => {
         })
 
         //'£p' => missing values
-        describe('When you write just sterling + p' , ( ) => {
+        describe('When you give just sterling + p' , ( ) => {
             it('should return error "missing values"', () => {
                 let pennyParse = new PennyParser('£p');
                 assert.equal( pennyParse.number.message,  new Error('missing values').message );
