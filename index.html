@@ -12,7 +12,7 @@
             <label for="calculator">
                 Calculator
             </label>
-            <input type="text" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^[0-9\.\p\£\]*$">
+            <input type="text" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^£?\d+(\.\d+)?p?$" title="£ + number + p">
             <button type="submit">Convert</button>
         </form>
         <table>
