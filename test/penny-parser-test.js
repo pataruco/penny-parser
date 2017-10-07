@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const PennyParser = require('../assets/js/penny-parser.js');
+const expect = require('chai').expect;
 
 describe('PennyParser', ( ) => {
 
@@ -84,7 +85,8 @@ describe('PennyParser', ( ) => {
         describe('When you give number string + X' , ( ) => {
             it('should return error "invalid character"', () => {
                 let pennyParse = new PennyParser('13x');
-                assert.equal( pennyParse.number.message,  new Error('invalid character').message );
+                expect( ( ) =>  pennyParse.number ).to.throw(Error, 'invalid character');
+
             });
         })
 
@@ -92,7 +94,7 @@ describe('PennyParser', ( ) => {
         describe('When you give just sterling + p' , ( ) => {
             it('should return error "missing values"', () => {
                 let pennyParse = new PennyParser('£p');
-                assert.equal( pennyParse.number.message,  new Error('missing values').message );
+                expect( ( ) =>  pennyParse.number ).to.throw( Error, 'missing values');
             });
         })
     });
