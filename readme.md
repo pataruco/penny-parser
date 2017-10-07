@@ -37,6 +37,7 @@ It is a Vue SPA that given a number of pennies calculate the minimum number of S
 ## Testing
 
  **On your terminal console**
+- `npm install -g mocha`
 
-- Inside folder penny-parser start server
+- Inside folder penny-parser
     - `npm run test`
