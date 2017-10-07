@@ -6,37 +6,41 @@
     <title>Sterling coins calculator</title>
 </head>
 <body>
-    <h1>Sterling coins calculator</h1>
-    <section id="js-app">
-        <form action="index.html" method="post" v-on:submit.prevent="onSubmit">
-            <label for="calculator">
-                Calculator
-            </label>
-            <input type="text" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^£?\d+(\.\d+)?p?$" title="£ + number + p">
-            <button type="submit">Convert</button>
-        </form>
-        <table>
-            <thead>
-                <tr>
-                    <th>Coin</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(value, key) in sterling" v-if="value">
-                    <td>
-                        {{ key >= 100 ? '£' + key / 100 : key + 'p'  }}
-                    </td>
-                    <td>{{ value }}</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr v-if="total">
-                    <td>Total</td>
-                    <td>£{{ total }}p</td>
-                </tr>
-            </tfoot>
-        </table>
+    <section id="js-app" class="row">
+        <main class="column">
+            <h1>Sterling coins calculator</h1>
+            <form action="index.html" method="post" v-on:submit.prevent="onSubmit">
+                <label for="calculator">
+                    Calculator
+                </label>
+                <input type="text" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^£?\d+(\.\d+)?p?$" title="£ + number + p">
+                <button type="submit">Convert</button>
+            </form>
+        </main>
+        <aside class="column" v-if="total">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Coin</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(value, key) in sterling" v-if="value">
+                        <td>
+                            {{ key >= 100 ? '£' + key / 100 : key + 'p'  }}
+                        </td>
+                        <td>{{ value }}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total</td>
+                        <td>£{{ total }}p</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </aside>
     </section>
     <script src="public/app.js" charset="utf-8"></script>
 </body>
