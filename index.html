@@ -6,23 +6,24 @@
     <title>Sterling coins calculator</title>
 </head>
 <body>
-    <section id="js-app" class="row">
-        <main class="column">
+    <main id="js-app" class="row" v-bind:class=" { showTotal: total }">
+        <section class="column calculator" v-bind:class="{ focused: isFocus }">
             <h1>Sterling coins calculator</h1>
             <form action="index.html" method="post" v-on:submit.prevent="onSubmit">
-                <label for="calculator">
+                <label for="calculator" class="sr-only">
                     Calculator
                 </label>
-                <input type="text" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^£?\d+(\.\d+)?p?$" title="£ + number + p">
-                <button type="submit">Convert</button>
+                <input type="text" placeholder="Amount in pennies" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^£?\d+(\.\d+)?p?$" title="£ + number + p" v-on:focus="onFocus" v-on:blur="onBlur">
+                <button type="submit"> Calculate </button>
             </form>
-        </main>
-        <aside class="column" v-if="total">
+        </section>
+        <aside class="column results" v-if="total">
+            <h2>Results</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Coin</th>
-                        <th>Value</th>
+                        <th>Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -41,7 +42,7 @@
                 </tfoot>
             </table>
         </aside>
-    </section>
+    </main>
     <script src="public/app.js" charset="utf-8"></script>
 </body>
 </html>
