@@ -34,6 +34,18 @@ class SterlingCalculator {
         }
     }
 
+    get result( ) {
+        let result = 0;
+        for ( let rate in this.calculation) {
+            if ( this.calculation.hasOwnProperty( rate ) ) {
+                if ( this.calculation[rate] ) {
+                    result += ( this.calculation[rate] * rate) / 100;
+                }
+            }
+        }
+        return result;
+    }
+
 }
 
 module.exports = SterlingCalculator;

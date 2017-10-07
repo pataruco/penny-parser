@@ -14,14 +14,15 @@ document.addEventListener("DOMContentLoaded", () =>  {
         methods: {
             onSubmit(  ) {
                 let penniesAmount;
-
                 try {
                     penniesAmount = new PennyParser( this.calculateString ).number;
+                    
                 } catch (e) {
-                    console.error(error.message);
+                    console.error(e);
                 }
-                this.sterling = new SterlingCalculator( penniesAmount ).calculate;
-                this.total  = parseFloat( penniesAmount / 100 );
+                const calculator = new SterlingCalculator( penniesAmount )
+                this.sterling = calculator.calculate;
+                this.total = calculator.result;
             }
         }
     });// end of Vue
