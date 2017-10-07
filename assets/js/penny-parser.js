@@ -27,6 +27,10 @@ class PennyParser {
             return this.pDotConvertToNumber();
         }
 
+        if (this.isDotPresent && this.areValidCharacters ){
+            return this.pDotConvertToNumber();
+        }
+
         if (this.isPInTheLastPosition && this.areValidCharacters) {
             return this.pConvertToNumber();
         }
@@ -54,11 +58,11 @@ class PennyParser {
     }
 
     invalidCharacterError() {
-        return new Error('invalid character');
+        throw new Error('invalid character');
     }
 
     missingValuesError() {
-        return new Error('missing values');
+        throw new Error('missing values');
     }
 
     clearString() {
