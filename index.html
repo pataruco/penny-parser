@@ -14,7 +14,7 @@
                 <label for="calculator" class="sr-only">
                     Calculator
                 </label>
-                <input type="text" placeholder="Amount in pennies" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^£?\d+(\.\d+)?p?$" title="£ + number + p" v-on:focus="onFocus" v-on:blur="onBlur">
+                <input type="text" placeholder="Amount of pennies" name="calculator" value="" id="calculator" v-model="calculateString" autocomplete="transaction-currency" pattern="^£?\d+(\.\d+)?p?$" title="£ + number + p" v-on:focus="onFocus" v-on:blur="onBlur">
                 <button type="submit"> Calculate </button>
             </form>
         </section>
