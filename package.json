@@ -1,5 +1,5 @@
 {
-  "name": "Uk Sterling coins calculator",
+  "name": "penny-parser",
   "version": "1.0.0",
   "description": "It is a Vue SPA that given a number of pennies calculate the minimum number of Sterling coins needed to make that amount",
   "main": "index.html",
